@@ -2,17 +2,20 @@
 import os
 from json import dumps
 import logging
+from dotenv import load_dotenv, find_dotenv
 
 from flask import Flask, g, Response, request
 from neo4j import GraphDatabase, basic_auth
 
+load_dotenv(find_dotenv())
+
 app = Flask(__name__, static_url_path='/static/')
 
-url = os.getenv("NEO4J_URI", "neo4j+s://demo.neo4jlabs.com")
-username = os.getenv("NEO4J_USER", "movies")
-password = os.getenv("NEO4J_PASSWORD", "movies")
+url = os.getenv("NEO4J_URI", "")
+username = os.getenv("NEO4J_USER", "")
+password = os.getenv("NEO4J_PASSWORD", "")
 neo4jVersion = os.getenv("NEO4J_VERSION", "4")
-database = os.getenv("NEO4J_DATABASE", "movies")
+database = os.getenv("NEO4J_DATABASE", "neo4j")
 
 port = os.getenv("PORT", 8080)
 
